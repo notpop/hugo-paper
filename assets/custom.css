@@ -14,3 +14,145 @@
 .dark .dark\:shadow-item {
   box-shadow: 20px 20px 60px #3c3939, -20px -20px 60px #3d3a3a;
 }
+
+#page-top a{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background:#942D2F;
+  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size:0.6rem;
+  transition:all 0.3s;
+}
+
+#page-top a:hover{
+  background: #777;
+}
+
+#page-top {
+  position: fixed;
+  right: 10px;
+  bottom:10px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+#page-top.UpMove{
+  animation: UpAnime 0.5s forwards;
+}
+@keyframes UpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+#page-top.DownMove{
+  animation: DownAnime 0.5s forwards;
+}
+@keyframes DownAnime{
+  from {
+    opacity: 1;
+  transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+  transform: translateY(100px);
+  }
+}
+
+.twitter {
+  position:fixed;
+  right:50px;
+  bottom:105px;
+  transition:1s;
+  opacity:0.3;
+
+  margin: 0 -1px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: .9rem;
+  color: var(--c-gray);
+  border: 1px solid var(--c-gray-border);
+  border-radius: var(--rounded-full);
+  padding: 0.55rem 1rem 0.55rem 0.9rem;
+  line-height: 1.1;
+}
+.twitter div {
+  padding-top: 3px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  height: 45px;
+  width: 150px;
+  font-weight: 900;
+  border-radius: 68px;
+  /* background: #14c3eb; */
+  background: #e5dd80;
+}
+.twitter svg {
+  width: 40px;
+  height: 40px;
+  color: #FFFFFF;
+}
+.twitter p {
+  margin: 0;
+  padding-top: 10px;
+  height: 20px;
+  font-size:large;
+}
+.twitter:hover{
+  opacity:1;
+}
+
+
+.top {
+  position:fixed;
+  right:50px;
+  bottom:50px;
+  transition:1s;
+  opacity:0.15;
+
+  margin: 0 -1px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: .9rem;
+  color: var(--c-gray);
+  border: 1px solid var(--c-gray-border);
+  border-radius: var(--rounded-full);
+  padding: 0.55rem 1rem 0.55rem 0.9rem;
+  line-height: 1.1;
+}
+.top div {
+  padding-top: 3px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  height: 45px;
+  width: 150px;
+  font-weight: 900;
+  border-radius: 68px;
+  background: #cdccc1;
+}
+.top p {
+  margin: 0;
+  padding-top: 10px;
+  height: 20px;
+  font-size:large;
+}
+.top:hover{
+  opacity:1;
+}
