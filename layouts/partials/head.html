@@ -23,11 +23,16 @@
   <meta name="author" content="{{ site.Author.name }}" />
   {{ end }}
 
+  <!-- OGPの設定 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="WebPosts" />
+  <meta property="og:description" content="Personal Web Blog." />
+  <meta property="og:url" content="https://www.webposts.jp/" />
+  <meta property="og:site_name" content="WebPosts" />
+  <meta property="og:image" content="https://www.webposts.jp/cardLogo.jpg" />
+  <!-- Twitterカードの設定 -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="getKishimoto" />
-  <meta name="twitter:title" content="WebPosts" />
-  <meta name="twitter:description" content="個人ブログ" />
-  <meta name="twitter:image" content="https://webposts-production.up.railway.app/images/cardLogo.png" />
 
   <!-- Styles & Scripts -->
   {{ $main_css := resources.Get "main.css" }}
@@ -47,6 +52,14 @@
   {{ end }}
 
   <!-- Preload -->
+  {{ $logo := resources.Get "images/logo.png" }}
+  <link rel="preload" as="image" href="{{ $logo | absURL }}">
+  {{ $logoWhite := resources.Get "images/logo_white.png" }}
+  <link rel="preload" as="image" href="{{ $logoWhite | absURL }}">
+
+  {{ $cardLogo := resources.Get "cardLogo.jpg" }}
+  <link rel="preload" as="image" href="{{ $cardLogo | absURL }}">
+
   {{ $dark_icon := "theme.png" }} {{ if site.Params.monoDarkIcon }} {{
   $dark_icon := "theme.svg" }} {{ end }}
   <link rel="preload" as="image" href="{{ $dark_icon | absURL }}" />
