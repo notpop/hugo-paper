@@ -10,6 +10,7 @@
   <title>{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ site.Title }}</title>
 
   <!-- Meta -->
+  <meta License="Copyright (c) 2014 Steve Francia">
   <meta name="theme-color" />
   {{ if eq .Kind "page" }}
   <meta name="description" content="{{ .Summary }}" />
@@ -21,6 +22,12 @@
   <meta name="description" content="{{ site.Params.description }}" />
   <meta name="author" content="{{ site.Author.name }}" />
   {{ end }}
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="getKishimoto" />
+  <meta name="twitter:title" content="WebPosts" />
+  <meta name="twitter:description" content="個人ブログ" />
+  <meta name="twitter:image" content="https://webposts-production.up.railway.app/images/cardLogo.png" />
 
   <!-- Styles & Scripts -->
   {{ $main_css := resources.Get "main.css" }}
@@ -56,8 +63,8 @@
   {{ end }}
 
   <!-- Favicon -->
-  <link rel="icon" href="{{ `favicon.ico` | absURL }}" />
-  <link rel="apple-touch-icon" href="{{ `apple-touch-icon.png` | absURL }}" />
+  <link rel="icon" href="{{ `favicon/favicon.ico` | absURL }}" />
+  <link rel="apple-touch-icon" href="{{ `favicon/apple-touch-icon.png` | absURL }}" />
 
   <!-- Generator -->
   {{ hugo.Generator }}

@@ -3,8 +3,14 @@
     <a
       class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
       href="{{ `` | absURL }}"
-      >{{ site.Title }}</a
     >
+      {{ $logo := resources.Get "images/logo.png" }}
+      <img src="{{ $logo.RelPermalink }}" id="mainLogo" width="180" height="130">
+
+      {{ $logoWhite := resources.Get "images/logo_white.png" }}
+      <img src="{{ $logoWhite.RelPermalink }}" id="mainLogoDark" width="180" height="130">
+    </a>
+
     <a
       class="btn-dark ml-6 h-6 w-6 shrink-0 cursor-pointer {{ if site.Params.monoDarkIcon }}[background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert{{ else }}[background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)]{{ end }} dark:[background-position:right]"
     ></a>
@@ -17,45 +23,54 @@
   {{ $bg_color := $.Scratch.Get "bg_color" }}
   <script>
     // base
-    const htmlClass = document.documentElement.classList;
+    const htmlClass = document.documentElement.classList
     setTimeout(() => {
-      htmlClass.remove('not-ready');
-    }, 10);
+      htmlClass.remove('not-ready')
+    }, 10)
 
     // mobile menu
-    const btnMenu = document.querySelector('.btn-menu');
+    const btnMenu = document.querySelector('.btn-menu')
     btnMenu.addEventListener('click', () => {
-      htmlClass.toggle('open');
+      htmlClass.toggle('open')
     });
 
     // dark theme
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    const lightBg = `{{ $.Scratch.Get "bg_color" }}`.replace(/"/g, '');
+    const metaTheme = document.querySelector('meta[name="theme-color"]')
+    const lightBg = `{{ $.Scratch.Get "bg_color" }}`.replace(/"/g, '')
     const setDark = (isDark) => {
-      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
-      htmlClass[isDark ? 'add' : 'remove']('dark');
-      localStorage.setItem('dark', isDark);
-    };
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg)
+      htmlClass[isDark ? 'add' : 'remove']('dark')
+      localStorage.setItem('dark', isDark)
+
+      const mainLogo = document.getElementById('mainLogo')
+      const mainLogoDark = document.getElementById('mainLogoDark')
+      mainLogoDark.style.display = 'none'
+      mainLogo.style.display = 'none'
+
+      const logo = isDark ? mainLogoDark : mainLogo
+      logo.style.display = 'block'
+    }
 
     // init
-    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
     if (htmlClass.contains('dark')) {
-      setDark(true);
-    } else {
-      const darkVal = localStorage.getItem('dark');
-      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+      setDark(true)
+    }
+    else {
+      const darkVal = localStorage.getItem('dark')
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches)
     }
 
     // listen system
     darkScheme.addEventListener('change', (event) => {
-      setDark(event.matches);
-    });
+      setDark(event.matches)
+    })
 
     // manual switch
-    const btnDark = document.querySelector('.btn-dark');
+    const btnDark = document.querySelector('.btn-dark')
     btnDark.addEventListener('click', () => {
-      setDark(localStorage.getItem('dark') !== 'true');
-    });
+      setDark(localStorage.getItem('dark') !== 'true')
+    })
   </script>
 
   <div
