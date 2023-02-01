@@ -19,8 +19,17 @@
     content="{{ .Params.Author | default site.Author.name }}"
   />
   {{ else }}
-  <meta name="description" content="{{ site.Params.description }}" />
-  <meta name="author" content="{{ site.Author.name }}" />
+    {{ if eq site.Params.description nil }}
+      <meta name="description" content="Personal Web Blog." />
+    {{ else }}
+      <meta name="description" content="{{ site.Params.description }}" />
+    {{ end }}
+
+    {{ if eq site.Author.name nil }}
+      <meta name="author" content="Kishimoto" />
+    {{ else }}
+      <meta name="author" content="{{ site.Author.name }}" />
+    {{ end }}
   {{ end }}
 
   <!-- OGPの設定 -->
@@ -29,7 +38,7 @@
   <meta property="og:description" content="Personal Web Blog." />
   <meta property="og:url" content="https://www.webposts.jp/" />
   <meta property="og:site_name" content="WebPosts" />
-  <meta property="og:image" content="https://www.webposts.jp/cardLogo.jpg" />
+  <meta property="og:image" content="https://www.webposts.jp/cardLogo.webp" />
   <!-- Twitterカードの設定 -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="getKishimoto" />
@@ -69,7 +78,7 @@
 
   <!-- Favicon -->
   <link rel="icon" href="{{ `favicon/favicon.ico` | absURL }}" />
-  <link rel="apple-touch-icon" href="{{ `favicon/apple-touch-icon.png` | absURL }}" />
+  <link rel="apple-touch-icon" href="{{ `favicon/apple-touch-icon.webp` | absURL }}" />
 
   <!-- Generator -->
   {{ hugo.Generator }}
@@ -100,4 +109,7 @@
   {{ template "_internal/twitter_cards.html" . }}
   <!---->
   {{ end }}
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8559692008280745"
+     crossorigin="anonymous"></script>
 </head>
